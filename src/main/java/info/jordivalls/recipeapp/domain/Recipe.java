@@ -4,12 +4,16 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import info.jordivalls.recipeapp.enumeration.Difficulty;
 
 @Entity
 public class Recipe {
@@ -26,7 +30,8 @@ public class Recipe {
 	private String url;
 	private String directions;
 	
-	// todo add difficulty
+	@Enumerated(value = EnumType.STRING)
+	private Difficulty Difficulty;
 	
 	@Lob
 	private Byte[] image;
@@ -116,6 +121,14 @@ public class Recipe {
 
 	public void setNotes(Notes notes) {
 		this.notes = notes;
+	}
+
+	public Difficulty getDifficulty() {
+		return Difficulty;
+	}
+
+	public void setDifficulty(Difficulty difficulty) {
+		Difficulty = difficulty;
 	}
 	
 	
