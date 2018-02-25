@@ -1,5 +1,6 @@
 package info.jordivalls.recipeapp.domain;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -9,7 +10,10 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -20,7 +24,7 @@ public class Recipe {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idLong;
+	private Long id;
 	
 	private String description;
 	private Integer prepTime;
@@ -28,6 +32,8 @@ public class Recipe {
 	private Integer servings;
 	private String source;
 	private String url;
+	
+	@Lob
 	private String directions;
 	
 	@Enumerated(value = EnumType.STRING)
@@ -42,13 +48,20 @@ public class Recipe {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
 	private Set<Ingredient> ingredients;
 	
+	@ManyToMany()
+	@JoinTable(
+		joinColumns = @JoinColumn(name = "recipe_id"),
+		inverseJoinColumns = @JoinColumn(name = "category_id")
+	)
+	private Set<Category> categories;
+	
 
 	public Long getIdLong() {
-		return idLong;
+		return id;
 	}
 
 	public void setIdLong(Long idLong) {
-		this.idLong = idLong;
+		this.id = idLong;
 	}
 	
 	public String getDescription() {
@@ -129,6 +142,28 @@ public class Recipe {
 
 	public void setDifficulty(Difficulty difficulty) {
 		Difficulty = difficulty;
+	}
+
+	public Set<Ingredient> getIngredients() {
+		
+		if (this.ingredients == null) {
+			this.ingredients = new HashSet<>();
+		}
+		
+		return this.ingredients;
+	}
+
+	public Set<Category> getCategories() {
+		
+		if (this.categories == null) {
+			this.categories = new HashSet<>();
+		}
+		
+		return this.categories;
+	}
+
+	public Long getId() {
+		return id;
 	}
 	
 	
