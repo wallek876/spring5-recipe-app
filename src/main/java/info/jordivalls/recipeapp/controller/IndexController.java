@@ -7,12 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import info.jordivalls.recipeapp.domain.Category;
-import info.jordivalls.recipeapp.domain.UnitOfMeasure;
-import info.jordivalls.recipeapp.repository.CategoryRepository;
-import info.jordivalls.recipeapp.repository.UnitOfMeasureRepository;
 import info.jordivalls.recipeapp.service.RecipeService;
+import lombok.extern.slf4j.Slf4j;
 
+
+@Slf4j
 @Controller
 public class IndexController {
 	
@@ -23,6 +22,8 @@ public class IndexController {
 	public String showIndex(Model model) {
 		
 		model.addAttribute("recipes", this.recipeService.getRecipes());
+		
+		log.warn("Showing index page");
 		
 		return "index";
 	}

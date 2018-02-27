@@ -5,6 +5,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+
+@Data
+@EqualsAndHashCode(exclude = {"id"})
 @Entity
 public class UnitOfMeasure {
 
@@ -13,25 +19,6 @@ public class UnitOfMeasure {
 	private long id;
 	
 	private String description;
-
-	
-	public long gedId() {
-		return id;
-	}
-
-	public void setId(long idLong) {
-		this.id = idLong;
-	}
-
-	public String getUom() {
-		return description;
-	}
-
-	public void setUom(String uom) {
-		this.description = uom;
-	}
-	
-	
 	
 	
 }
