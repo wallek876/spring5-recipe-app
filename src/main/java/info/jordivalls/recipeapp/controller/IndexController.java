@@ -1,6 +1,5 @@
 package info.jordivalls.recipeapp.controller;
 
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +16,17 @@ public class IndexController {
 	
 	@Autowired
 	private RecipeService recipeService;
+	
+	/*
+	 * Constructors
+	 */
+	public IndexController() {	
+	}
+	
+	public IndexController(RecipeService recipeService) {
+		this.recipeService = recipeService;
+		log.warn("created IndexController with constructor");
+	}
 	
 	@GetMapping({"", "/", "index"})
 	public String showIndex(Model model) {

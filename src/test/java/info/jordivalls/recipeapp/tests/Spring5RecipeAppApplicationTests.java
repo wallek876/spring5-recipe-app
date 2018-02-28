@@ -1,4 +1,4 @@
-package guru.springframework;
+package info.jordivalls.recipeapp.tests;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

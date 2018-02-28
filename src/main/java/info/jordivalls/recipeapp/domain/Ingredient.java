@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@EqualsAndHashCode(exclude = {"id", "recipe"})
+@EqualsAndHashCode(exclude = {"recipe"})
 @NoArgsConstructor
 public class Ingredient {
 

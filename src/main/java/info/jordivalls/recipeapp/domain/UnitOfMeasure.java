@@ -10,7 +10,6 @@ import lombok.EqualsAndHashCode;
 
 
 @Data
-@EqualsAndHashCode(exclude = {"id"})
 @Entity
 public class UnitOfMeasure {
 
